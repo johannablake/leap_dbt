@@ -1,4 +1,4 @@
-name: 'leap_project'
+name: 'leap'
 version: '1.0.0'
 config-version: 2
 
@@ -17,14 +17,18 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 models:
-  raw:
-    schema: RAW  
-    materialized: view
-  staged:
-    schema: STAGED  
-    materialized: view
-  consolidated:
-    schema: CONSOLIDATED  
-    materialized: table
+  leap:
+    database: ANALYTICS  
+
+    raw:
+      schema: RAW  
+      materialized: view
+    staged:
+      schema: STAGED  
+      materialized: view
+    consolidated:
+      schema: CONSOLIDATED  
+      materialized: table
+
 
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
