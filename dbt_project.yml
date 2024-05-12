@@ -17,15 +17,14 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 models:
-  leap_project:
-    raw:
-      schema: raw  
-      materialized: view
-    staged:
-      schema: staged  
-      materialized: view
-    consolidated:
-      schema: consolidated  
-      materialized: table
+  raw:
+    schema: RAW  
+    materialized: view
+  staged:
+    schema: STAGED  
+    materialized: view
+  consolidated:
+    schema: CONSOLIDATED  
+    materialized: table
 
 # Full documentation: https://docs.getdbt.com/docs/configuring-models

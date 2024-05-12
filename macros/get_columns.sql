@@ -1,8 +1,11 @@
-{% macro get_columns(schema_name, table_name) %}
+{% macro get_columns(model_name) %}
+    {% set target_relation = ref(model_name) %}
+
     {% set query %}
         SELECT column_name
-        FROM "{{ schema_name }}".information_schema.columns
-        WHERE table_name = '{{ table_name }}'
+        FROM "{{ target_relation.database }}".information_schema.columns
+        WHERE table_schema = '{{ target_relation.schema }}'
+        AND table_name = '{{ target_relation.identifier }}'
     {% endset %}
 
     {% set results = run_query(query) %}

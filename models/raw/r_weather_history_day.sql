@@ -1,8 +1,8 @@
 -- define as view
-{{ config(materialized='view', schema = 'raw') }}
+{{ config(materialized='view', schema = 'RAW') }}
 
 -- define columns 
-{% set columns = adapter.get_columns_in_relation(source('analytics_raw', 'weather_history_day')) %}
+{% set columns = adapter.get_columns_in_relation(source('ANALYTICS_RAW', 'WEATHER_HISTORY_DAY')) %}
 
 -- cte for converting column names to lowercase
 with lowercase_columns AS (
@@ -11,7 +11,7 @@ with lowercase_columns AS (
             "{{ column.name }}" AS "{{ column.name | lower }}"
             {% if not loop.last %}, {% endif %}
         {% endfor %}
-    from {{ source("analytics_raw", "weather_history_day") }}
+    from {{ source('ANALYTICS_RAW', 'WEATHER_HISTORY_DAY') }}
 )
 
 select 
