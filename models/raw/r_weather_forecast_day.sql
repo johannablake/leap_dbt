@@ -1,9 +1,9 @@
 -- define as view
-{{ config(materialized="view") }}
+{{ config(materialized="view", schema = "RAW") }}
 
 -- define columns 
 {% set columns = adapter.get_columns_in_relation(
-    source("analytics_raw", "weather_forecast_day")
+    source("ANALYTICS_RAW", "WEATHER_FORECAST_DAY")
 ) %}
 
 -- cte for converting column names to lowercase
@@ -14,7 +14,7 @@ with
                 "{{ column.name }}" as "{{ column.name | lower }}"
                 {% if not loop.last %}, {% endif %}
             {% endfor %}
-        from {{ source("analytics_raw", "weather_forecast_day") }}
+        from {{ source("ANALYTICS_RAW", "WEATHER_FORECAST_DAY") }}
     )
 
 select 

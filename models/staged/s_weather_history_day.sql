@@ -1,0 +1,1 @@
+{% set column_names = get_columns('r_weather_history_day') %}

@@ -1,9 +1,9 @@
 -- define as view
-{{ config(materialized="view") }}
+{{ config(materialized="view", schema = "RAW") }}
 
 -- define columns 
 {% set columns = adapter.get_columns_in_relation(
-    source("analytics_raw", "chicago_bike_station_status_flatten_full")
+    source("ANALYTICS_RAW", "CHICAGO_BIKE_STATION_STATUS_FLATTEN_FULL")
 ) %}
 
 -- cte for converting column names to lowercase
@@ -14,7 +14,7 @@ with
                 "{{ column.name }}" as "{{ column.name | lower }}"
                 {% if not loop.last %}, {% endif %}
             {% endfor %}
-        from {{ source("analytics_raw", "chicago_bike_station_status_flatten_full") }}
+        from {{ source("ANALYTICS_RAW", "CHICAGO_BIKE_STATION_STATUS_FLATTEN_FULL") }}
     )
 
 select 
