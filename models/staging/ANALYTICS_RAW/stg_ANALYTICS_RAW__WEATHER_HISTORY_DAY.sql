@@ -1,9 +1,11 @@
-with 
+-- define as view
+{{ config(materialized='view', schema = 'RAW') }}
 
-source as (
+-- define columns 
+{% set columns = adapter.get_columns_in_relation(source('ANALYTICS_RAW', 'WEATHER_HISTORY_DAY')) %}
 
+with source as (
     select * from {{ source('ANALYTICS_RAW', 'WEATHER_HISTORY_DAY') }}
-
 ),
 
 renamed as (
