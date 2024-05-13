@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: ANALYTICS_RAW
+  - name: SNOWFLAKE
     database: ANALYTICS
     schema: RAW
     tables:

@@ -2,10 +2,10 @@
 {{ config(materialized='view', schema = 'RAW') }}
 
 -- define columns
-{% set columns = adapter.get_columns_in_relation(source('ANALYTICS_RAW', 'WEATHER_HISTORY_DAY')) %}
+{% set columns = adapter.get_columns_in_relation(source('SNOWFLAKE', 'WEATHER_HISTORY_DAY')) %}
 
 with source as (
-    select * from {{ source('ANALYTICS_RAW', 'WEATHER_HISTORY_DAY') }}
+    select * from {{ source('SNOWFLAKE', 'WEATHER_HISTORY_DAY') }}
 ),
 
 renamed_and_converted as (
@@ -18,7 +18,7 @@ renamed_and_converted as (
                 -- convert mph to kph and rename
                 {{ column.name }} * 1.60934 as {{ column.name[:-4] }}_KPH,
             {% else %}
-                -- include the column as is
+                -- Include the column as is
                 {{ column.name }},
             {% endif %}
         {% endfor %}
@@ -28,7 +28,6 @@ renamed_and_converted as (
 select
     postal_code,
     country,
-    time_init_utc,
     date_valid_std,
     doy_std,
     min_temperature_air_2m_c,
@@ -58,6 +57,9 @@ select
     min_pressure_2m_mb,
     avg_pressure_2m_mb,
     max_pressure_2m_mb,
+    min_pressure_tendency_2m_mb,
+    avg_pressure_tendency_2m_mb,
+    max_pressure_tendency_2m_mb,
     min_pressure_mean_sea_level_mb,
     avg_pressure_mean_sea_level_mb,
     max_pressure_mean_sea_level_mb,
@@ -75,14 +77,13 @@ select
     avg_wind_direction_100m_deg,
     tot_precipitation_in,
     tot_snowfall_in,
+    tot_snowdepth_in,
     min_cloud_cover_tot_pct,
     avg_cloud_cover_tot_pct,
     max_cloud_cover_tot_pct,
     min_radiation_solar_total_wpm2,
     avg_radiation_solar_total_wpm2,
     max_radiation_solar_total_wpm2,
-    tot_radiation_solar_total_wpm2,
-    probability_of_precipitation_pct,
-    probability_of_snow_pct
-from
+    tot_radiation_solar_total_wpm2
+from 
     renamed_and_converted

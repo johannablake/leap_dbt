@@ -24,7 +24,7 @@ models:
       schema: RAW  
       materialized: view
     staged:
-      schema: STAGED  
+      schema: STAGING  
       materialized: view
     consolidated:
       schema: CONSOLIDATED  
