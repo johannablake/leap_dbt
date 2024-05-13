@@ -1,11 +1,11 @@
 version: 2
 
 sources:
-  - name: ANALYTICS_RAW
-    database: ANALYTICS
-    schema: RAW
+  - name: analytics_raw
+    database: analytics
+    schema: raw
     tables:
-      - name: CHICAGO_BIKE_STATION_FLATTEN
-      - name: CHICAGO_BIKE_STATION_STATUS_FLATTEN_FULL
-      - name: WEATHER_FORECAST_DAY
-      - name: WEATHER_HISTORY_DAY
+      - name: chicago_bike_station_flatten
+      - name: chicago_bike_station_status_flatten_full
+      - name: weather_forecast_day
+      - name: weather_history_day

@@ -18,16 +18,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   leap:
-    database: ANALYTICS  
+    database: analytics  
 
     raw:
-      schema: RAW  
+      schema: raw  
       materialized: view
     staged:
-      schema: STAGED  
+      schema: staged  
       materialized: view
     consolidated:
-      schema: CONSOLIDATED  
+      schema: consolidated  
       materialized: table
 
 
