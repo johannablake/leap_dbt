@@ -1,5 +1,5 @@
--- define as table
-{{ config(materialized="table", schema = "PROD_CONSOLIDATED") }}
+-- define as view
+{{ config(materialized="table", schema = "CONSOLIDATED") }}
 
 select 
     l.last_updated_date,
