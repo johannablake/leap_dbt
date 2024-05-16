@@ -2,7 +2,7 @@
 version: 2
 
 models:
-    - name: stg_chicago_bike_station_flatten
+    - name: stg_chicago_bike_station_info_flatten
       description: "model built on top of raw data source in snowflake. no transformations performed"
       columns:
           - name: legacy_id
