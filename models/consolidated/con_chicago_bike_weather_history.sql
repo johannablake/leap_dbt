@@ -4,5 +4,5 @@
 select 
     *
 from 
-    prod_staging.weather_history_day
+    prod_staging.stg_weather_history_day
 
