@@ -1,5 +1,5 @@
 -- define as view
-{{ config(materialized="view", schema = "STAGING") }}
+{{ config(materialized="view", schema = "PROD_STAGING") }}
 
 -- define columns 
 {% set columns = adapter.get_columns_in_relation (

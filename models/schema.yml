@@ -7,7 +7,7 @@ models:
       columns:
           - name: legacy_id
             description: "named as legacy but is used to join with stg_chicago_bike_station_status_flatten_full"
-            tests:
+            data_tests:
                 - unique
                 - not_null
 
@@ -16,7 +16,7 @@ models:
       columns:
           - name: station_id
             description: "the non-unique id for each station"
-            tests:
+            data_tests:
                 - not_null
 
     - name: stg_weather_forecast_day
@@ -24,11 +24,11 @@ models:
       columns: 
         - name: date_valid_std
           description: "the date of the forecast"
-          tests: 
+          data_tests: 
             - not_null
         - name: country
           description: "the location/country of the forecasted weather variables"
-          tests: 
+          data_tests: 
             - not_null
 
     - name: stg_weather_history_day
@@ -36,10 +36,10 @@ models:
       columns: 
         - name: date_valid_std
           description: "the date of the measured weather values"
-          tests: 
+          data_tests: 
             - not_null
         - name: country
           description: "the location/country of the measured weather variables"
-          tests: 
+          data_tests: 
             - not_null
                 
