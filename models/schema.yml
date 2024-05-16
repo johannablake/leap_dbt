@@ -2,20 +2,48 @@
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
+    - name: stg_chicago_bike_station_flatten
+      description: "model built on top of raw data source in snowflake. no transformations performed"
       columns:
-          - name: id
-            description: "The primary key for this table"
+          - name: legacy_id
+            description: "named as legacy but is used to join with stg_chicago_bike_station_status_flatten_full"
             tests:
                 - unique
                 - not_null
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
+    - name: stg_chicago_bike_station_status_flatten_full
+      description: "model built on top of raw data source in snowflake. no transformations performed"
       columns:
-          - name: id
-            description: "The primary key for this table"
+          - name: station_id
+            description: "the non-unique id for each station"
             tests:
-                - unique
                 - not_null
+          - name: legacy_id
+            description: "used to join with stg_chicago_bike_station_flatten"
+            tests: 
+                - not_null
+
+    - name: stg_weather_forecast_day
+      description: "model built on top of raw data source in snowflake. columns not using the  metric system are transformed"
+      columns: 
+        - name: date_valid_std
+          description: "the date of the forecast"
+          tests: 
+            - not_null
+        - name: country
+          description: "the location/country of the forecasted weather variables"
+          tests: 
+            - not_null
+
+    - name: stg_weather_history_day
+      description: "model built on top of raw data source in snowflake. columns not using the  metric system are transformed"
+      columns: 
+        - name: date_valid_std
+          description: "the date of the measured weather values"
+          tests: 
+            - not_null
+        - name: country
+          description: "the location/country of the measured weather variables"
+          tests: 
+            - not_null
+                
