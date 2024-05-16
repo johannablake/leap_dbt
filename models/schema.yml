@@ -18,10 +18,6 @@ models:
             description: "the non-unique id for each station"
             tests:
                 - not_null
-          - name: legacy_id
-            description: "used to join with stg_chicago_bike_station_flatten"
-            tests: 
-                - not_null
 
     - name: stg_weather_forecast_day
       description: "model built on top of raw data source in snowflake. columns not using the  metric system are transformed"
