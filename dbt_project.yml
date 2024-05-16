@@ -19,11 +19,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   leap:
     database: ANALYTICS  
-
-    raw:
-      schema: PROD_RAW  
-      materialized: view
-    staged:
+    
+    staging:
       schema: PROD_STAGING  
       materialized: view
     consolidated:
