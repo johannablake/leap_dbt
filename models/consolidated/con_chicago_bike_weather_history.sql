@@ -4,7 +4,7 @@
 select 
     l.last_updated_date,
     k.temperature_avg,
-    l.num_bikes_available_avg,
+    l.num_ebikes_available_avg,
     l.num_bikes_available_avg
 from
 (
