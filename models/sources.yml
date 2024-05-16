@@ -3,9 +3,9 @@ version: 2
 sources:
   - name: SNOWFLAKE
     database: ANALYTICS
-    schema: RAW
+    schema: PROD_RAW
     tables:
-      - name: CHICAGO_BIKE_STATION_FLATTEN
+      - name: CHICAGO_BIKE_STATION_INFO_FLATTEN
       - name: CHICAGO_BIKE_STATION_STATUS_FLATTEN_FULL
       - name: WEATHER_FORECAST_DAY
       - name: WEATHER_HISTORY_DAY

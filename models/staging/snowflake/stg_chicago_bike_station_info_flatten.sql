@@ -3,12 +3,12 @@
 
 -- define columns 
 {% set columns = adapter.get_columns_in_relation (
-    source("SNOWFLAKE", "CHICAGO_BIKE_STATION_FLATTEN")
+    source("SNOWFLAKE", "CHICAGO_BIKE_STATION_INFO_FLATTEN")
 ) %}
 
 
 with source as (
-    select * from {{ source('SNOWFLAKE', 'CHICAGO_BIKE_STATION_FLATTEN') }}
+    select * from {{ source('SNOWFLAKE', 'CHICAGO_BIKE_STATION_INFO_FLATTEN') }}
 ),
 
 renamed as (
