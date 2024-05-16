@@ -2,10 +2,10 @@
 {{ config(materialized='view', schema = 'RAW') }}
 
 -- define columns
-{% set columns = adapter.get_columns_in_relation(source('SNOWFLAKE', 'WEATHER_HISTORY_DAY')) %}
+{% set columns = adapter.get_columns_in_relation(source('SNOWFLAKE', 'WEATHER_FORECAST_DAY')) %}
 
 with source as (
-    select * from {{ source('SNOWFLAKE', 'WEATHER_HISTORY_DAY') }}
+    select * from {{ source('SNOWFLAKE', 'WEATHER_FORECAST_DAY') }}
 ),
 
 renamed_and_converted as (
@@ -28,8 +28,8 @@ renamed_and_converted as (
 select
     postal_code,
     country,
-    time_init_utc,
     date_valid_std,
+    time_init_utc,
     doy_std,
     min_temperature_air_2m_c,
     avg_temperature_air_2m_c,
